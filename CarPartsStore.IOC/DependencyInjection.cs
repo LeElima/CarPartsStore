@@ -15,7 +15,7 @@ namespace CarPartsStore.IOC
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<CarPartsStoreContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    options.UseSqlServer(configuration.GetConnectionString("CarPartsStore"),
                     b => b.MigrationsAssembly(typeof(CarPartsStoreContext).Assembly.FullName)));
 
             //services.AddIdentity<ApplicationUser, IdentityRole>()
