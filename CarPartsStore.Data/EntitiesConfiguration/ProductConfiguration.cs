@@ -9,7 +9,7 @@ using CarPartsStore.Domain.Entities;
 
 namespace CarPartsStore.Data.EntitiesConfiguration
 {
-    internal class ProductConfiguration : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
