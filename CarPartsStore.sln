@@ -6,17 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPartsStore", "CarPartsStore\CarPartsStore.csproj", "{BE410E40-F85E-4952-959F-8C7EBACF3E50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPartsStore.Data", "CarPartsStore.Data\CarPartsStore.Data.csproj", "{8E85239F-728D-4ABA-AB10-3A26D1E1B4C9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5033601E-B642-4DF7-8A5D-6E5499B1957E} = {5033601E-B642-4DF7-8A5D-6E5499B1957E}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPartsStore.IOC", "CarPartsStore.IOC\CarPartsStore.IOC.csproj", "{385CE6EA-D32C-4F63-A8EF-54F9397FFD8A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5033601E-B642-4DF7-8A5D-6E5499B1957E} = {5033601E-B642-4DF7-8A5D-6E5499B1957E}
-		{8E85239F-728D-4ABA-AB10-3A26D1E1B4C9} = {8E85239F-728D-4ABA-AB10-3A26D1E1B4C9}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPartsStore.Domain", "CarPartsStore.Domain\CarPartsStore.Domain.csproj", "{5033601E-B642-4DF7-8A5D-6E5499B1957E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPartsStore.Application", "CarPartsStore.Application\CarPartsStore.Application.csproj", "{16CBBEF6-4019-40E5-81B4-E4B3A181AC19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +35,10 @@ Global
 		{5033601E-B642-4DF7-8A5D-6E5499B1957E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5033601E-B642-4DF7-8A5D-6E5499B1957E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5033601E-B642-4DF7-8A5D-6E5499B1957E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16CBBEF6-4019-40E5-81B4-E4B3A181AC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CBBEF6-4019-40E5-81B4-E4B3A181AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CBBEF6-4019-40E5-81B4-E4B3A181AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CBBEF6-4019-40E5-81B4-E4B3A181AC19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
