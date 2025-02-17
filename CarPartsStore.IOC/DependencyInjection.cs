@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace CarPartsStore.IOC
                     options.UseSqlServer(configuration.GetConnectionString("CarPartsStore"),
                     b => b.MigrationsAssembly(typeof(CarPartsStoreContext).Assembly.FullName)));
 
+
             //services.AddIdentity<ApplicationUser, IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>()
             //    .AddDefaultTokenProviders();
@@ -25,13 +27,30 @@ namespace CarPartsStore.IOC
             //services.ConfigureApplicationCookie(options =>
             //         options.AccessDeniedPath = "/Account/Login");
             //Paginas web usar o AddScoped
-           
+
 
             //var myHandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
             //services.AddMediatR(myHandlers);
 
             return services;
 
+        }
+        public static void ExecuteMigrations(this IServiceProvider serviceProvider)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<CarPartsStoreContext>();
+                    context.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<CarPartsStoreContext>>();
+                    logger.LogError(ex, "Erro ao executar a migração do banco de dados.");
+                }
+            }
         }
     }
 }

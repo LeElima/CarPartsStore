@@ -1,4 +1,5 @@
-﻿using CarPartsStore.Domain.Entities;
+﻿using CarPartsStore.Data.EntitiesConfiguration;
+using CarPartsStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,9 @@ namespace CarPartsStore.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarPartsStoreContext).Assembly);
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarPartsStoreContext).Assembly);
         }
     }
     
