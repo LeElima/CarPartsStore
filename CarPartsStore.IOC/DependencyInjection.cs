@@ -1,4 +1,8 @@
-﻿using CarPartsStore.Data.Context;
+﻿using CarPartsStore.Application.Services;
+using CarPartsStore.Application.Services.Interfaces;
+using CarPartsStore.Data.Context;
+using CarPartsStore.Data.Repositories;
+using CarPartsStore.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +23,8 @@ namespace CarPartsStore.IOC
                     options.UseSqlServer(configuration.GetConnectionString("CarPartsStore"),
                     b => b.MigrationsAssembly(typeof(CarPartsStoreContext).Assembly.FullName)));
 
-
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
             //services.AddIdentity<ApplicationUser, IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>()
             //    .AddDefaultTokenProviders();
