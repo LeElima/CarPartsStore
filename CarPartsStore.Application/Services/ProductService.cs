@@ -21,6 +21,7 @@ namespace CarPartsStore.Application.Services
 
         public async Task AddAsync(ProductDTO productDto)
         {
+            ValidateProduct(productDto);
             var product = new Product()
             {
                 Name = productDto.Name,
@@ -73,6 +74,45 @@ namespace CarPartsStore.Application.Services
                 Id = productDto.Id
             };
             await _repository.UpdateAsync(product);
+        }
+        private void ValidateProduct(ProductDTO product)
+        {
+            // Verificando se o nome está vazio
+            if (string.IsNullOrWhiteSpace(product.Name))
+            {
+                throw new ArgumentException("Product name cannot be empty", nameof(product.Name));
+            }
+
+            // Verificando se a descrição está vazia
+            if (string.IsNullOrWhiteSpace(product.Description))
+            {
+                throw new ArgumentException("Product description cannot be empty", nameof(product.Description));
+            }
+
+            // Verificando se o preço é menor ou igual a zero
+            if (product.Price <= 0)
+            {
+                throw new ArgumentException("Price must be greater than zero", nameof(product.Price));
+            }
+
+            // Verificando se o estoque é negativo
+            if (product.Stock < 0)
+            {
+                throw new ArgumentException("Stock cannot be negative", nameof(product.Stock));
+            }
+
+            // Verificando se a imagem está no formato esperado (opcional, mas bom para garantir)
+            if (!string.IsNullOrWhiteSpace(product.Image) && !IsValidImageUrl(product.Image))
+            {
+                throw new ArgumentException("Product image URL is invalid", nameof(product.Image));
+            }
+        }
+
+        private bool IsValidImageUrl(string imageUrl)
+        {
+            // Implementação de validação para URL de imagem (apenas um exemplo simples)
+            Uri uriResult;
+            return Uri.TryCreate(imageUrl, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
     }
 }
